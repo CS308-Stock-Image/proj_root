@@ -112,3 +112,7 @@ def addPhoto(request):
     context = {'categories': categories}
     return render(request, 'accounts/photos/add.html', context)
 
+def deletePhoto(request,pk):
+    photo=Photo.objects.get(id=pk)
+    photo.delete()
+    return redirect('home')

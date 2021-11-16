@@ -41,6 +41,7 @@
                                 <small>Price: {{photo.price}}</small>
                             </div>
                             <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'deletePhoto' photo.id %}"class="btn btn-outline-dark btn-sm m-1">Delete</a>
                       
                             
                         </div>
