@@ -116,3 +116,20 @@ def deletePhoto(request,pk):
     photo=Photo.objects.get(id=pk)
     photo.delete()
     return redirect('home')
+
+def sortByCategory(request):
+   photos =Photo.objects.all().order_by('category')
+   context={'photos':photos}
+   return render(request, 'accounts/main.html',context)
+
+def sortByIncreasingPrice(request):
+   photos =Photo.objects.all().order_by('price')
+   context={'photos':photos}
+   return render(request, 'accounts/main.html',context)
+
+def sortByDecreasingPrice(request):
+   photos =Photo.objects.all().order_by('-price')
+   context={'photos':photos}
+   return render(request, 'accounts/main.html',context)
+
+
