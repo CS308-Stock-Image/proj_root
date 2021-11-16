@@ -27,6 +27,19 @@
 <body >
 
             <div class="col-md-9">
+                <div class= "row">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sort
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="/sortByCategory">Sort by category</a>
+                          <a class="dropdown-item" href="/sortByIncreasingPrice">Sort by increasing order of price</a>
+                          <a class="dropdown-item" href="/sortByDecreasingPrice">Sort by decreasing order of price</a>
+                        </div>
+                      </div>
+
+                </div>
                 <div class="row">
 
                     {% for photo in photos  %}

@@ -19,6 +19,10 @@ urlpatterns = [
     path('add/', views.addPhoto, name='add'),
 	path('deletePhoto/<int:pk>/',views.deletePhoto, name='deletePhoto'),
 
+	path('sortByCategory',views.sortByCategory,name='sortByCategory'),
+    path('sortByIncreasingPrice',views.sortByIncreasingPrice,name='sortByIncreasingPrice'),
+	 path('sortByDecreasingPrice',views.sortByDecreasingPrice,name='sortByDecreasingPrice')
+
      
 
 ]
