@@ -104,6 +104,7 @@ def addPhoto(request):
                 category=category,
                 description=data['description'],
                 image=image,
+                price=data['price'],
             )
 
         return redirect('gallery')
