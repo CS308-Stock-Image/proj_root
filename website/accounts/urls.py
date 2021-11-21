@@ -12,6 +12,8 @@ urlpatterns = [
 	path('login/', views.loginPage, name="login"),  
 	path('logout/', views.logoutUser, name="logout"),
 
+	path('cart/', views.cartPage, name="cart"),	#######################
+
     path('', views.home, name="home"),
 
 	path('', views.gallery, name='gallery'),
