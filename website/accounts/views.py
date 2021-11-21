@@ -14,10 +14,12 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .models import *
 from .forms import  CreateUserForm
+
 def home(request):
 	photos =Photo.objects.all()
 	context={'photos':photos}
 	return render(request, 'accounts/main.html',context)
+
 def registerPage(request):
 	if request.user.is_authenticated:
 		return redirect('home')
@@ -58,6 +60,16 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
+
+@login_required(login_url='login')      #########
+def cartPage(request):
+    context = {}
+    return render(request, 'accounts/cart.html', context)
+
+@login_required(login_url='login')      #########
+def checkoutPage(request):
+    context = {}
+    return render(request, 'accounts/checkout.html', context)
 
 @login_required(login_url='login')
 def gallery(request):
