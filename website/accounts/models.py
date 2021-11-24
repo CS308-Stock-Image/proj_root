@@ -27,8 +27,20 @@ class Photo(models.Model):
         Category, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(null=False, blank=False)
     description = models.TextField()
-    price= models.DecimalField(max_digits=5, decimal_places=2)
+    price= models.DecimalField(max_digits=5, decimal_places=2, default=0)
     
 
     def __str__(self):
         return self.description
+class ShopCart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+    product=models.ForeignKey(Photo,on_delete=models.SET_NULL,null=True)
+    quantity=models.IntegerField()
+    
+
+    def __str__(self):
+        return self.product.title
+    @property
+    def price(self):
+        return(self.product.price)
+    
