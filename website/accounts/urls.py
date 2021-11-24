@@ -21,7 +21,9 @@ urlpatterns = [
 
 	path('sortByCategory',views.sortByCategory,name='sortByCategory'),
     path('sortByIncreasingPrice',views.sortByIncreasingPrice,name='sortByIncreasingPrice'),
-	 path('sortByDecreasingPrice',views.sortByDecreasingPrice,name='sortByDecreasingPrice')
+	path('sortByDecreasingPrice',views.sortByDecreasingPrice,name='sortByDecreasingPrice'),
+
+	path('addtoshopcart/<int:id>/',views.addtoshopcart,name='addtoshopcart')
 
      
 

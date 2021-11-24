@@ -133,3 +133,22 @@ def sortByDecreasingPrice(request):
    return render(request, 'accounts/main.html',context)
 
 
+def addtoshopcart(request,id):
+  
+    current_user=request.user
+    checkproduct= ShopCart.objects.filter(product_id=id)
+    
+    if checkproduct:
+        pass
+    else:
+        data=ShopCart()
+        data.user_id =current_user.id
+        data.product_id =id
+        data.quantity=1
+        data.save()
+    image=Photo.objects.filter(id=id)
+    context= {"image":image}
+    return redirect('gallery')
+    #return render(request,"accounts/cart.html",context)
+
+
