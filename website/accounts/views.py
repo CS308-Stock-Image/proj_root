@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect 
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -123,3 +124,21 @@ def addPhoto(request):
     context = {'categories': categories}
     return render(request, 'accounts/photos/add.html', context)
 
+def addtoshopcart(request,id):
+    url=request.META.get('HTTP_REFERER')
+    current_user=request.user
+    checkproduct= ShopCart.objects.filter(product_id=id)
+    if checkproduct:
+        pass
+    else:
+        data=ShopCart()
+        data.user_id =current_user.id
+        data.product_id =id
+     
+        data.quantity=1
+        data.save()
+    image=Photo.objects.filter(id=id)
+    context= {"image":image}
+    return render(request,"accounts/cart.html",context)
+
+        
