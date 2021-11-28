@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import get_object_or_404, render, redirect 
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
@@ -71,7 +71,7 @@ def gallery(request):
 
     categories = Category.objects.filter(user=user)
     context = {'categories': categories, 'photos': photos}
-    return render(request, 'accounts/photos/gallery.html', context)
+    return render(request,  'accounts/photos/gallery.html', context)
 
 
 @login_required(login_url='login')
@@ -132,23 +132,35 @@ def sortByDecreasingPrice(request):
    context={'photos':photos}
    return render(request, 'accounts/main.html',context)
 
+def shopcart(request):
+    image=ShopCart.objects.filter()
+    context= {"image":image}
+    return render(request,"accounts/cart.html",context)
+    
 
 def addtoshopcart(request,id):
   
+
     current_user=request.user
-    checkproduct= ShopCart.objects.filter(product_id=id)
-    
-    if checkproduct:
-        pass
-    else:
-        data=ShopCart()
+    data=ShopCart(id=id)
+
+    if data.quantity==0:
         data.user_id =current_user.id
         data.product_id =id
+        data.product= Photo(id=id)
         data.quantity=1
         data.save()
-    image=Photo.objects.filter(id=id)
-    context= {"image":image}
-    return redirect('gallery')
-    #return render(request,"accounts/cart.html",context)
+        image=ShopCart.objects.filter()
+        context= {"image":image}
+        return render(request,"accounts/cart.html",context)
+   
+    return redirect('home')
+
+def deletecart(request,id):
+    cart = ShopCart(id)
+    cart.delete()
+    return redirect('shopcart')
+
+    
 
 
