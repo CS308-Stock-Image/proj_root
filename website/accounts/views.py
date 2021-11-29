@@ -102,6 +102,7 @@ def addPhoto(request):
         for image in images:
             photo = Photo.objects.create(
                 category=category,
+                category_name=category,
                 description=data['description'],
                 image=image,
                 price=data['price'],
@@ -118,7 +119,7 @@ def deletePhoto(request,pk):
     return redirect('home')
 
 def sortByCategory(request):
-   photos =Photo.objects.all().order_by('category')
+   photos =Photo.objects.all().order_by('category_name')
    context={'photos':photos}
    return render(request, 'accounts/main.html',context)
 
@@ -161,6 +162,8 @@ def deletecart(request,id):
     cart.delete()
     return redirect('shopcart')
 
-    
+def checkout(request):
+    return render(request,"accounts/checkout.html")
+
 
 
