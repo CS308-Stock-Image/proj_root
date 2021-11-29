@@ -26,6 +26,7 @@ class Photo(models.Model):
     
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True)
+    category_name=models.TextField()
     image = models.ImageField(null=False, blank=False)
     description = models.TextField()
     price= models.DecimalField(max_digits=5, decimal_places=2, default=0)
